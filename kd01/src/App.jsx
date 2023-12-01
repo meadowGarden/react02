@@ -1,6 +1,11 @@
 
 import './App.css'
 import Post from './Post'
+import { LessText } from './LessText';
+import { StepCounter } from './StepCounter';
+import MyTeam from './MyTeam';
+import { ThemeSwitcher } from './ThemeSwithcer';
+import { ThemeProvider } from './ThemeProvider';
 
 function App() {
 
@@ -56,16 +61,23 @@ function App() {
       title="second title"
       description="this is my other description" /> */}
 
-      {mappedPosts}
-
-
-
-
-
+      {/* {mappedPosts}
 
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
+      </p>   */}
+
+      <LessText />
+      <StepCounter />
+
+      <MyTeam />
+
+      <ThemeProvider>
+        <ThemeSwitcher />
+      </ThemeProvider>
+
+      
+
 
     </>
   )
