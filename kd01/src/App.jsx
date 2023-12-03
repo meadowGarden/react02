@@ -72,9 +72,9 @@ function App() {
 
       <MyTeam />
 
-      <ThemeProvider>
+      {/* <ThemeProvider>
         <ThemeSwitcher />
-      </ThemeProvider>
+      </ThemeProvider> */}
 
       
 

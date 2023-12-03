@@ -39,4 +39,4 @@ export const people = [
       "team": "Moksleiviai",
       "image": "https://imgur.com/lrWQx8ls.jpg"
     }
-  ]
+]
