@@ -6,14 +6,35 @@ import { StepCounter } from './StepCounter';
 import MyTeam from './MyTeam';
 import { ThemeSwitcher } from './ThemeSwithcer';
 import { ThemeProvider } from './ThemeProvider';
+import axios from "axios";
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const person = {
     name: "Darius",
     age: 34,
     hasLicence: true,
   };
+
+
+  const [postArray, setPostArray] = useState();
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts")
+    .then((response) => {
+      setPostArray(response.data);
+      setIsLoading()})
+    .catch(error => console.log(error));
+  }, []);
+
+  console.log("post array", postArray);
+
+  if (isLoading) {
+    return <div>data is loading, please wait...</div>
+  }
 
 
   const posts = [
@@ -40,14 +61,56 @@ function App() {
     },
   ]
 
-  const mappedPosts = posts.map((post) => {
+  // const mappedPosts = posts.map((post) => {
+  //   return <Post
+  //           title={post.title}
+  //           description={post.description}
+  //           personalInfo={post.person} />;
+  // });
+
+  const mappedPosts = postArray.map((post) => {
     return <Post
+            key={post.id}
             title={post.title}
-            description={post.description}
-            personalInfo={post.person} />;
+            description={post.body}
+            personalInfo={post.userId} />;
   });
 
- 
+//---------------------------------------------------------------
+
+  const getPostData = () => {
+    axios.get("https://jsonplaceholder.typicode.com/posts")
+    .then((response) => console.log(response.data))
+    .catch(error => console.log(error));
+  };
+  getPostData();
+
+//---------------------------------------------------------------
+
+  const postData = {
+    userId: 102,
+    id: 88,
+    title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    body: "fffffffffffffff"
+  }
+
+  const addPost = () => {
+    axios.post("https://jsonplaceholder.typicode.com/posts", {postData})
+    .then((response) => console.log(response))
+    .catch((err) => console.log(err));
+  }
+
+  addPost();
+
+//---------------------------------------------------------------
+
+
+
+
+
+//---------------------------------------------------------------
+
+
 
   return (
     <>
@@ -61,16 +124,19 @@ function App() {
       title="second title"
       description="this is my other description" /> */}
 
-      {/* {mappedPosts}
 
-      <p className="read-the-docs">
+
+
+     {mappedPosts}
+
+      {/* <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>   */}
-
+      {/* 
       <LessText />
       <StepCounter />
 
-      <MyTeam />
+      <MyTeam /> */}
 
       {/* <ThemeProvider>
         <ThemeSwitcher />
