@@ -8,6 +8,11 @@ import { ThemeSwitcher } from './ThemeSwithcer';
 import { ThemeProvider } from './ThemeProvider';
 import axios from "axios";
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import AboutMe from './AboutMe';
+import NavBar from './NavBar';
+import ContactMe from './ContactMe';
+import OnePost from './OnePost';
 
 function App() {
 
@@ -73,7 +78,8 @@ function App() {
             key={post.id}
             title={post.title}
             description={post.body}
-            personalInfo={post.userId} />;
+            personalInfo={post.userId}
+            id={post.id} />;
   });
 
 //---------------------------------------------------------------
@@ -124,11 +130,22 @@ function App() {
       title="second title"
       description="this is my other description" /> */}
 
+      
+
+
+      <NavBar />
+      <Routes>
+        <Route path="/about" element= {<AboutMe />} />
+        <Route path="/posts" element= {mappedPosts} />
+        <Route path="/contact" element= {<ContactMe />} />
+        <Route path="/posts/:id" element= {<OnePost />} />
+      </Routes>
 
 
 
-     {mappedPosts}
+      
 
+      
       {/* <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>   */}
@@ -140,9 +157,7 @@ function App() {
 
       {/* <ThemeProvider>
         <ThemeSwitcher />
-      </ThemeProvider> */}
-
-      
+      </ThemeProvider> */}      
 
 
     </>
