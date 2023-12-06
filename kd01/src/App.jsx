@@ -13,6 +13,7 @@ import AboutMe from './AboutMe';
 import NavBar from './NavBar';
 import ContactMe from './ContactMe';
 import OnePost from './OnePost';
+import Events from './Events';
 
 function App() {
 
@@ -139,6 +140,7 @@ function App() {
         <Route path="/posts" element= {mappedPosts} />
         <Route path="/contact" element= {<ContactMe />} />
         <Route path="/posts/:id" element= {<OnePost />} />
+        <Route path="/events" element= {<Events />} />
       </Routes>
 
 
